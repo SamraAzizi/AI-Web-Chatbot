@@ -15,6 +15,7 @@ from tensorflow.keras.models import load_model
 
 def clean_up_sentence(sentence):
     lemmatizer = WordNetLemmatizer()
+
     sentence_words = nltk.word_tokenize(sentence)
     sentence_words = [lemmatizer.lemmatize(word) for word in sentence_words]
 
@@ -40,6 +41,7 @@ def predict_class(sentence):
     bow = bag_of_words(sentence)
     res = model.predict(np.array([bow]))[0]
     ERROR_THRESHOLD = 0.25
+
     results = [[i, r] for i, r in enumerate(res) if r > ERROR_THRESHOLD]
     results.sort(key=lambda x: x[1], reverse=True)
 
@@ -49,3 +51,17 @@ def predict_class(sentence):
         return_list.append({'intent': classes[r[0]], 'probability': str(r[1])})
 
     return return_list
+
+
+def get_response(intents_list):
+    intents_json = json.load(open('model/intents.json'))
+
+    tag = intents_list[0]['intent']
+    list_of_intents = intents_json['intents']
+
+    for i in list_of_intents:
+        if i['tag'] == tag:
+            result = random.choice(i['responses'])
+            break
+
+    return result
