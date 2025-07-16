@@ -33,3 +33,34 @@
    ```bash
    git clone https://github.com/SamraAzizi/AI-Web-Chatbot.git
    cd AI-Web-Chatbot
+   ```
+
+2. Create and activate virtual environment:
+   ```bash
+   python -m venv venv
+   # Windows:
+   venv\Scripts\activate
+   # Mac/Linux:
+   source venv/bin/activate
+   ```
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Create .env file:
+   ```bash
+   OPENAI_API_KEY=your_api_key_here
+   ```
+
+## Configuration
+
+Edit app.py to customize:
+   ```bash
+   # Change model (default: gpt-3.5-turbo)
+   model = "gpt-3.5-turbo"  
+
+   # Modify temperature (0-2)
+   temperature = 0.7
+   ```
+   
