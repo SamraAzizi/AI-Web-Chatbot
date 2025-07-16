@@ -13,9 +13,6 @@
 - [Configuration](#-configuration)
 - [Usage](#-usage)
 - [Project Structure](#-project-structure)
-- [Deployment](#-deployment)
-- [Troubleshooting](#-troubleshooting)
-- [License](#-license)
 
 ##  Features
 - Web-based ChatGPT interface
@@ -60,7 +57,7 @@
    ```bash
    python flaskApp/app.py
    ```
-   
+
 ## Configuration
 
 Edit app.py to customize:
@@ -84,18 +81,24 @@ Then open http://localhost:5000 in your browser.
 ## Project Structure
 ```bash
 AI-Web-Chatbot/
-├── flaskApp/ # Main Flask application
-│ ├── model/ # Trained model files
-│ ├── templates/ # Frontend templates
-│ │ └── index.html # Chat interface
-│ ├── app.py # Flask application entry
-│ └── utils.py # Helper functions
-├── preparations/ # Training and data preparation
-│ ├── model/ # Model training files
-│ ├── chatbot.py # Core chatbot logic
+├── flaskApp/ # Production Flask app
+│ ├── model/ # Deployed model files
+│ │ ├── chatbotModel.keras # Trained neural network
+│ │ ├── classes.pkl # Response categories
+│ │ └── words.pkl # Vocabulary mappings
+│ ├── templates/
+│ │ └── index.html # Web interface
+│ ├── app.py # Main application
+│ └── utils.py # Support functions
+├── preparations/ # Development area
+│ ├── model/ # Training artifacts
+│ │ ├── chatbotModel.keras
+│ │ ├── classes.pkl
+│ │ └── words.pkl
+│ ├── chatbot.py # Core logic
 │ ├── intents.json # Training data
-│ └── modelTraining.py # Model training script
-├── .env # Environment variables
-├── venv/ # Virtual environment
-└── README.md # This file
+│ └── modelTraining.py # Model builder
+├── .env # Configuration
+├── venv/ # Python environment
+└── README.md # Documentation
 ```
